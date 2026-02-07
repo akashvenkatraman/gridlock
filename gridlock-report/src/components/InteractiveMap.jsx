@@ -46,58 +46,94 @@ export const InteractiveMap = ({ data }) => {
 
                     // Logic:
                     // Slider 0: Show ONLY Original (rec=0)
-                    // Slider 100: Show ALL (Original + Recovered)
+                    <>
+                        <div className="md:col-span-3 bg-gridlock-panel border border-white/10 rounded-xl overflow-hidden relative h-[500px]">
+                            {/* MAP CONTAINER */}
+                            <MapContainer
+                                center={center}
+                                zoom={11}
+                                style={{ height: "100%", width: "100%", background: "#050505" }}
+                                zoomControl={false}
+                            >
+                                <TileLayer
+                                    url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+                                />
+                                <MapController center={center} zoom={11} />
 
-                    // Opacity of recovered points
-                    const isRecovered = point.rec === 1;
-                    const opacity = isRecovered ? (sliderVal / 100) : 1;
+                                {/* RENDER CRASH POINTS */}
+                                {visibleData.map((point, idx) => {
+                                    const isRecovered = point.rec === 1;
+                                    const opacity = isRecovered ? (sliderVal / 100) : 1;
 
-                    // Color: Cyan for Original, Red for Recovered (to highlight them) 
-                    // OR: Red for Danger (Severity), Cyan for New?
-                    // Let's stick to: Cyan = Original, Red = Recovered (Newly found danger)
-                    const color = isRecovered ? "#ff003c" : "#00f3ff";
+                                    // Color: Cyan for Original, Red for Recovered (to highlight them)
+                                    // OR: Red for Danger (Severity), Cyan for New?
+                                    // Let's stick to: Cyan = Original, Red = Recovered (Newly found danger)
+                                    const color = isRecovered ? "#ff003c" : "#00f3ff";
 
-                    if (opacity < 0.1) return null; // Performance optimization
+                                    if (opacity < 0.1) return null; // Performance optimization
 
-                    return (
-                        <CircleMarker
-                            key={point.id}
-                            center={[point.lat, point.lng]}
-                            radius={3 + (point.severity / 5)} // Size by severity
-                            pathOptions={{
-                                color: color,
-                                fillColor: color,
-                                fillOpacity: opacity * 0.6,
-                                weight: 0
-                            }}
-                        >
-                            <Popup className="custom-popup">
-                                <div className="bg-gridlock-bg text-white p-2 font-mono text-xs">
-                                    <strong className="text-gridlock-cyan">ID: {point.id}</strong><br />
-                                    Severity: {point.severity}<br />
-                                    Recovered: {isRecovered ? "YES" : "NO"}
+                                    return (
+                                        <CircleMarker
+                                            key={point.id}
+                                            center={[point.lat, point.lng]}
+                                            radius={3 + (point.severity / 5)} // Size by severity
+                                            pathOptions={{
+                                                color: color,
+                                                fillColor: color,
+                                                fillOpacity: opacity * 0.6,
+                                                weight: 0
+                                            }}
+                                        >
+                                            <Popup className="custom-popup">
+                                                <div className="bg-gridlock-bg text-white p-2 font-mono text-xs">
+                                                    <strong className="text-gridlock-cyan">ID: {point.id}</strong><br />
+                                                    Severity: {point.severity}<br />
+                                                    Recovered: {isRecovered ? "YES" : "NO"}
+                                                </div>
+                                            </Popup>
+                                        </CircleMarker>
+                                    );
+                                })}
+                            </MapContainer>
+
+                            {/* OVERLAY CONTROLS */}
+                            <div className="absolute top-4 right-4 z-[400] bg-black/80 backdrop-blur border border-white/20 p-4 rounded-lg w-64">
+                                <div className="text-xs text-gridlock-muted mb-2 font-mono uppercase tracking-widest">Data Layer Strength</div>
+                                <input
+                                    type="range"
+                                    min="0"
+                                    max="100"
+                                    value={sliderVal}
+                                    onChange={(e) => setSliderVal(e.target.value)}
+                                    className="w-full h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-gridlock-cyan"
+                                />
+                                <div className="flex justify-between mt-2 text-[10px] font-mono">
+                                    <span className="text-gridlock-red">LEGACY (52%)</span>
+                                    <span className="text-gridlock-cyan">FULL (100%)</span>
                                 </div>
-                            </Popup>
-                        </CircleMarker>
-                    );
-                })}
-            </MapContainer>
+                            </div>
+                        </div>
 
-            {/* Slider Control */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[400] w-64 md:w-96 bg-gridlock-panel/80 backdrop-blur px-6 py-4 rounded-full border border-gridlock-cyan/30">
-                <div className="flex justify-between text-xs font-mono text-gridlock-cyan mb-2">
-                    <span>RAW_DATA</span>
-                    <span>RECOVERED</span>
-                </div>
-                <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    value={sliderVal}
-                    onChange={(e) => setSliderVal(e.target.value)}
-                    className="w-full h-1 bg-gridlock-bg rounded-lg appearance-none cursor-pointer accent-gridlock-cyan"
-                />
-            </div>
-        </div>
+                        {/* STATS HUD BAR */}
+                        <div className="md:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                            <div className="bg-gridlock-panel/40 border border-white/10 p-4 rounded-lg flex flex-col items-center justify-center">
+                                <div className="text-3xl font-tech font-bold text-white">60,001</div>
+                                <div className="text-xs text-gridlock-muted uppercase tracking-wider mt-1">Total Crashes</div>
+                            </div>
+                            <div className="bg-gridlock-panel/40 border border-gridlock-red/30 p-4 rounded-lg flex flex-col items-center justify-center">
+                                <div className="text-3xl font-tech font-bold text-gridlock-red">18,240</div>
+                                <div className="text-xs text-gridlock-red/70 uppercase tracking-wider mt-1">Total Injured</div>
+                            </div>
+                            <div className="bg-gridlock-panel/40 border border-gridlock-cyan/30 p-4 rounded-lg flex flex-col items-center justify-center">
+                                <div className="text-3xl font-tech font-bold text-gridlock-cyan">8,342</div>
+                                <div className="text-xs text-gridlock-cyan/70 uppercase tracking-wider mt-1">Vulnerable Users</div>
+                            </div>
+                            <div className="bg-gridlock-panel/40 border border-white/10 p-4 rounded-lg flex flex-col items-center justify-center">
+                                <div className="text-3xl font-tech font-bold text-white">$1.8B</div>
+                                <div className="text-xs text-gridlock-muted uppercase tracking-wider mt-1">Est. Econ Impact</div>
+                            </div>
+                        </div>
+                    </>
     );
 };
