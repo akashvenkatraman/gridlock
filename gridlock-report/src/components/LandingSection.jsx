@@ -44,31 +44,87 @@ export const LandingSection = ({ meta, stats }) => {
                     ))}
                 </div>
 
-                {/* Problem Statement Cards */}
-                <div className="grid md:grid-cols-3 gap-6 text-left">
-                    <div className="bg-gridlock-panel/50 p-6 rounded-xl border border-gridlock-red/20 hover:border-gridlock-red/50 transition-colors group">
-                        <ShieldAlert className="w-8 h-8 text-gridlock-red mb-4 group-hover:scale-110 transition-transform" />
-                        <h3 className="text-lg font-bold text-white mb-2">The Problem</h3>
-                        <p className="text-sm text-gridlock-muted font-mono leading-relaxed">
-                            47% of NYC crash data was invisible to planners due to sensor failures and ghost records.
-                        </p>
-                    </div>
+                {/* PROBLEM / SOLUTION / IMPACT GRID */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 w-full mb-12">
 
-                    <div className="bg-gridlock-panel/50 p-6 rounded-xl border border-gridlock-cyan/20 hover:border-gridlock-cyan/50 transition-colors group">
-                        <BrainCircuit className="w-8 h-8 text-gridlock-cyan mb-4 group-hover:scale-110 transition-transform" />
-                        <h3 className="text-lg font-bold text-white mb-2">The Solution</h3>
-                        <p className="text-sm text-gridlock-muted font-mono leading-relaxed">
-                            Automated Regex pattern mining recovered 24,500 coordinates from raw text descriptions.
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.6 }}
+                        className="p-6 bg-gridlock-panel/40 backdrop-blur border border-gridlock-red/20 hover:border-gridlock-red/50 rounded-xl group transition-all"
+                    >
+                        <div className="flex items-center gap-3 mb-4">
+                            <ShieldAlert className="w-6 h-6 text-gridlock-red" />
+                            <h3 className="text-xl font-bold text-white">The Problem</h3>
+                        </div>
+                        <p className="text-gridlock-muted text-sm leading-relaxed mb-4">
+                            NYC's $1.8B Vision Zero initiative manages safety, but the underlying data was critically flawed, blinding city planners.
                         </p>
-                    </div>
+                        <ul className="text-xs text-gridlock-muted space-y-2 font-mono border-t border-white/5 pt-4">
+                            <li className="flex items-start gap-2">
+                                <span className="text-gridlock-red">✕</span> 47% of crash locations were NULL/Missing.
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-gridlock-red">✕</span> 3,000+ "Ghost Rows" set in the future (2026).
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-gridlock-red">✕</span> 80+ variations for a single vehicle type.
+                            </li>
+                        </ul>
+                    </motion.div>
 
-                    <div className="bg-gridlock-panel/50 p-6 rounded-xl border border-white/10 hover:border-white/30 transition-colors group">
-                        <Database className="w-8 h-8 text-white mb-4 group-hover:scale-110 transition-transform" />
-                        <h3 className="text-lg font-bold text-white mb-2">The Impact</h3>
-                        <p className="text-sm text-gridlock-muted font-mono leading-relaxed">
-                            Data integrity restored to 93%, revealing 5 previously unknown high-risk intersections.
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.7 }}
+                        className="p-6 bg-gridlock-panel/40 backdrop-blur border border-gridlock-cyan/20 hover:border-gridlock-cyan/50 rounded-xl group transition-all"
+                    >
+                        <div className="flex items-center gap-3 mb-4">
+                            <BrainCircuit className="w-6 h-6 text-gridlock-cyan" />
+                            <h3 className="text-xl font-bold text-white">The Solution</h3>
+                        </div>
+                        <p className="text-gridlock-muted text-sm leading-relaxed mb-4">
+                            We built a forensic Python pipeline to extract, clean, and standardize the raw data into actionable intelligence.
                         </p>
-                    </div>
+                        <ul className="text-xs text-gridlock-muted space-y-2 font-mono border-t border-white/5 pt-4">
+                            <li className="flex items-start gap-2">
+                                <span className="text-gridlock-cyan">✓</span> Regex Mining recovered 24,500+ coordinates.
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-gridlock-cyan">✓</span> Entity Resolution unified 394 vehicle types to 14.
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-gridlock-cyan">✓</span> ISO 8601 Standardization for all dates/times.
+                            </li>
+                        </ul>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.8 }}
+                        className="p-6 bg-gridlock-panel/40 backdrop-blur border border-white/10 hover:border-white/30 rounded-xl group transition-all"
+                    >
+                        <div className="flex items-center gap-3 mb-4">
+                            <Database className="w-6 h-6 text-white" />
+                            <h3 className="text-xl font-bold text-white">The Impact</h3>
+                        </div>
+                        <p className="text-gridlock-muted text-sm leading-relaxed mb-4">
+                            Restored data integrity to 93%, revealing hidden dangers and enabling precise resource allocation for the first time.
+                        </p>
+                        <ul className="text-xs text-gridlock-muted space-y-2 font-mono border-t border-white/5 pt-4">
+                            <li className="flex items-start gap-2">
+                                <span className="text-white">★</span> 5 Hidden "High-Risk" Intersections Exposed.
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-white">★</span> 92.3% Global Data Integrity Score Achieved.
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-white">★</span> Power BI Ready Dataset for Legislative Action.
+                            </li>
+                        </ul>
+                    </motion.div>
+
                 </div>
 
             </motion.div>
