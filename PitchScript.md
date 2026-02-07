@@ -7,25 +7,32 @@
 **Speaker**: *Akash*
 *(Screen shows: "Forensic Audit of 60,001 Records")*
 
+**[Tone: Authoritative, Serious]**
 "Good morning judges. We are Team Data Masters, and this is **Project GRIDLOCK**.
 
-New York City spends **$1.8 billion** on Vision Zero to save lives. But we found that for years, the city has been flying blind.
-Our forensic audit of 60,001 crash records revealed that nearly **half** of the data—including the deadliest expressway crashes—was effectively invisible to city planners.
+**[Pause]**
 
+New York City spends **$1.8 billion** on Vision Zero to save lives. But we found that for years, the city has been flying blind.
+Our forensic audit of **60,001 crash records** revealed that nearly **half** of the data—including the deadliest expressway crashes—was effectively invisible to city planners.
+
+**[Gesture to Screen]**
 This isn't just a website. It's the roadmap they were missing."
 
 ---
 
 ## **PART 1: The Crime Scene (Scroll 20%)**
 **Speaker**: *Avvudaiyappan*
-*(Scroll down to "Data Forensics" - Compare Cards)*
+*(Scroll down to "The Transformation" - Compare Cards)*
 
+**[Tone: Analytical, Disappointed]**
 "Here is the data reality.
-On the left, the **Legacy Dataset**. It had **52% integrity**.
+On the left, look at the **Legacy Dataset**. It had **52% integrity**.
+**[Point to Left Card]**
 We found **3,500 ghost records** dated in the future—January 2026.
 We found **80 different ways** to write 'Sedan'.
 It was analytically paralyzing.
 
+**[Tone: Energetic, Proud]**
 On the right, **Forensic Clean**.
 We didn't just clean it; we engineered it.
 - We standardized **100% of dates**.
@@ -38,14 +45,16 @@ We didn't just clean it; we engineered it.
 **Speaker**: *Harish*
 *(Scroll to the Interactive Map - Pause)*
 
+**[Tone: Dramatic Reveal]**
 "This is the most critical moment.
-*(Drag slider to LEFT)*
+**[Drag slider slowly to LEFT]**
 This empty map is what NYC saw. The Belt Parkway and FDR Drive looked safe because the sensors were failing.
 
-*(Drag slider to RIGHT - Explain the Red)*
+**[Drag slider slowly to RIGHT - Explain the Red]**
 **This is what we revealed.**
 Those red clusters? That's **24,500 crashes** that just appeared on the map.
 We used Regex pattern mining to extract location data from text fields, recovering **98%** of the lost data.
+**[Emphasis]**
 Every red dot represents a potential life saved if resources are deployed there."
 
 ---
@@ -55,7 +64,7 @@ Every red dot represents a potential life saved if resources are deployed there.
 *(Scroll to "Hidden Dangers")*
 
 "Because of our recovery, we uncovered high-risk intersections that were previously unranked.
-1.  **Belt Parkway & Bay Parkway**: Severity Score of 28. Compeletely hidden before our audit.
+1.  **Belt Parkway & Bay Parkway**: Severity Score of 28. Completely hidden before our audit.
 2.  **Grand Concourse**: A pedestrian nightmare that was under-reported due to poor infrastructure.
 
 *(Scroll slightly to Timeline)*
@@ -80,6 +89,7 @@ We can finally see the truth."
 **Speaker**: *Akash*
 *(Scroll to "Predictive Risk Model")*
 
+**[Tone: Visionary, Action-Oriented]**
 "But we don't just look back. We predict.
 Our model forecasts a **15% severity spike** on Queens Blvd tomorrow.
 
@@ -90,3 +100,17 @@ We project this will result in a **30-40% reduction** in highway fatalities by 2
 We have handed over the **Clean CSV** and the **Power BI Dashboard** to the judges.
 The data is ready. The insights are clear.
 Thank you."
+
+---
+
+## **BONUS: Technical Q&A Cheat Sheet**
+**Speaker**: *Tech Lead*
+
+**Q: How did you handle 60,000 points on a web map?**
+A: "We used a hybrid architecture. Python performs the heavy scraping and aggregation (Pandas/NumPy) on the backend. The frontend (React/Vite) receives a pre-computed lightweight JSON payload, so the map renders instantly without crashing the browser."
+
+**Q: How did you recover the coordinates?**
+A: "We used Regex Pattern Mining on the 'Location' text field. We extracted coordinate pairs `(lat, lon)` that were buried in the string data, validated them against NYC boundaries, and injected them back into the clean dataset."
+
+**Q: What is your stack?**
+A: "Python (Forensics), React + Tailwind (Visualization), Leaflet (Mapping), and Recharts (Analytics)."
