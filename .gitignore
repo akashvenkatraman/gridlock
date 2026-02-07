@@ -1,0 +1,23 @@
+# System Files
+.DS_Store
+Thumbs.db
+__pycache__/
+*.tmp
+
+# Node Modules (Install with npm install)
+node_modules/
+gridlock-report/node_modules/
+dist/
+.env
+
+# Large Raw Data CSV (Exclude raw, keep Clean)
+refined_Motor_Vehicle_Collisions_-_Crashes_20260107.csv
+Motor_Vehicle_Collisions_-_Crashes.csv
+
+# Agent Artifacts
+.gemini/
+
+# Keep these relevant files:
+!Motor_Vehicle_Collisions_FINAL_CLEAN.csv
+!Motor_Vehicle_Collisions_CLEAN.csv
+!gridlock-report/public/web_data_v2.json
