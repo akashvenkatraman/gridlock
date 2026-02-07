@@ -2,6 +2,7 @@
   "name": "gridlock-report",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://akashvenkatraman.github.io/gridlock/",
   "type": "module",
   "scripts": {
     "dev": "vite",
