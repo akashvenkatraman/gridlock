@@ -19,6 +19,7 @@ jobs:
           cd gridlock-report
           npm install
           npm run build
+          touch dist/.nojekyll
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
