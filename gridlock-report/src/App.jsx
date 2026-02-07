@@ -49,6 +49,7 @@ function App() {
         <div className="text-center">
           <div className="text-2xl font-bold mb-2">INITIALIZING...</div>
           <div className="text-sm opacity-50">LOADING FORENSIC DATASET</div>
+          <div className="text-xs text-gridlock-muted mt-4">Target: {import.meta.env.BASE_URL}web_data_v2.json</div>
         </div>
       </div>
     );
