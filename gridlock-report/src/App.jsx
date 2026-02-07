@@ -9,6 +9,7 @@ import { DangerCards } from "./components/DangerCards";
 import { Timeline } from "./components/Timeline";
 import { DashboardSlide } from "./components/DashboardSlide";
 import { PredictionSection } from "./components/PredictionSection";
+import { DeliverablesSection } from "./components/DeliverablesSection";
 
 function App() {
   const [data, setData] = useState(null);
@@ -136,7 +137,10 @@ function App() {
         {/* 6. PREDICTIVE INSIGHTS */}
         <PredictionSection />
 
-        {/* 7. FOOTER */}
+        {/* 7. DELIVERABLES */}
+        <DeliverablesSection />
+
+        {/* 8. FOOTER */}
         <footer className="py-20 text-center bg-black border-t border-white/10">
           <h1 className="text-4xl md:text-6xl font-tech font-black text-white mb-8">
             THANK <span className="text-gridlock-cyan text-glow">YOU</span>

@@ -147,25 +147,50 @@ export const DataStorySection = ({ stats }) => {
                     </motion.div>
                 </div>
 
-                {/* 2. THE PROCESS (METHODOLOGY AUDIT) */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {methodologies.map((m, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: i * 0.1 }}
-                            className="bg-gridlock-panel/40 border border-white/5 p-6 rounded-xl hover:bg-gridlock-panel/60 hover:border-white/10 transition-all"
-                        >
-                            <div className={`w-12 h-12 rounded-lg bg-black flex items-center justify-center mb-4 ${m.color}`}>
-                                <m.icon className="w-6 h-6" />
-                            </div>
-                            <h4 className={`text-lg font-bold mb-2 ${m.color}`}>{m.title}</h4>
-                            <p className="text-sm text-gridlock-muted leading-relaxed">
-                                {m.desc}
-                            </p>
-                        </motion.div>
-                    ))}
+                {/* 2. QUALITY IMPACT METRICS (FROM AUDIT SUMMARY) */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        className="bg-gridlock-panel/40 border border-gridlock-cyan/30 p-6 rounded-xl text-center"
+                    >
+                        <div className="text-3xl font-bold text-white mb-1">+41%</div>
+                        <div className="text-xs text-gridlock-cyan uppercase tracking-wider font-bold">Coords Recovered</div>
+                        <div className="text-[10px] text-gridlock-muted mt-2">52% → 93% Completeness</div>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 }}
+                        className="bg-gridlock-panel/40 border border-purple-500/30 p-6 rounded-xl text-center"
+                    >
+                        <div className="text-3xl font-bold text-white mb-1">+45%</div>
+                        <div className="text-xs text-purple-400 uppercase tracking-wider font-bold">Date Consistency</div>
+                        <div className="text-[10px] text-gridlock-muted mt-2">55% → 100% ISO Standard</div>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="bg-gridlock-panel/40 border border-amber-500/30 p-6 rounded-xl text-center"
+                    >
+                        <div className="text-3xl font-bold text-white mb-1">+75%</div>
+                        <div className="text-xs text-amber-400 uppercase tracking-wider font-bold">Vehicle Standards</div>
+                        <div className="text-[10px] text-gridlock-muted mt-2">Mapped 80+ Variants</div>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                        className="bg-gridlock-panel/40 border border-green-500/30 p-6 rounded-xl text-center"
+                    >
+                        <div className="text-3xl font-bold text-white mb-1">+35%</div>
+                        <div className="text-xs text-green-400 uppercase tracking-wider font-bold">Overall Usability</div>
+                        <div className="text-[10px] text-gridlock-muted mt-2">Ready for Power BI</div>
+                    </motion.div>
                 </div>
 
             </div>
