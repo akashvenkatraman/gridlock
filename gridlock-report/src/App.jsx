@@ -13,6 +13,7 @@ import { PredictionSection } from "./components/PredictionSection";
 function App() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -21,8 +22,11 @@ function App() {
   });
 
   useEffect(() => {
-    console.log("App: Fetching web_data_v2.json...");
-    fetch("/web_data_v2.json")
+    // Use Vite's BASE_URL for correct path on GitHub Pages
+    const dataUrl = `${import.meta.env.BASE_URL}web_data_v2.json`;
+    console.log(`App: Fetching data from ${dataUrl}...`);
+
+    fetch(dataUrl)
       .then(res => {
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         return res.json();
@@ -32,7 +36,11 @@ function App() {
         setData(data);
         setLoading(false);
       })
-      .catch(err => console.error("App: Failed to load data:", err));
+      .catch(err => {
+        console.error("App: Failed to load data:", err);
+        setError(err.message);
+        setLoading(false);
+      });
   }, []);
 
   if (loading) {
@@ -41,6 +49,20 @@ function App() {
         <div className="text-center">
           <div className="text-2xl font-bold mb-2">INITIALIZING...</div>
           <div className="text-sm opacity-50">LOADING FORENSIC DATASET</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="h-screen w-full flex items-center justify-center bg-gridlock-bg text-white font-mono">
+        <div className="text-center p-8 border border-red-500 rounded bg-red-900/20">
+          <div className="text-2xl font-bold mb-2 text-red-500">DATA LOAD FAILED</div>
+          <p className="text-sm mb-4">{error}</p>
+          <button onClick={() => window.location.reload()} className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transistion">
+            RETRY
+          </button>
         </div>
       </div>
     );
