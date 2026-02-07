@@ -20,8 +20,8 @@ export const InteractiveMap = ({ data }) => {
     const tileUrl = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
 
     return (
-        <div className="flex flex-col gap-4">
-            <div className="md:col-span-3 bg-gridlock-panel border border-white/10 rounded-xl overflow-hidden relative h-[600px]">
+        <div className="flex flex-col gap-4 h-full">
+            <div className="md:col-span-3 bg-gridlock-panel border border-white/10 rounded-xl overflow-hidden relative flex-1 min-h-0">
                 {/* MAP CONTAINER */}
                 <MapContainer
                     center={center}
