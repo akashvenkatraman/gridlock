@@ -52,7 +52,7 @@ export const DeliverablesSection = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-20">
                     {items.map((item, i) => (
                         <motion.div
                             key={i}
@@ -71,6 +71,62 @@ export const DeliverablesSection = () => {
                             </div>
                         </motion.div>
                     ))}
+                </div>
+
+                {/* COMPETITIVE ADVANTAGES */}
+                <div className="bg-gridlock-panel/40 border border-white/5 rounded-2xl p-8 md:p-12 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-gridlock-cyan/5 blur-3xl rounded-full -mr-20 -mt-20"></div>
+
+                    <h3 className="text-2xl font-tech font-bold text-white mb-8 border-l-4 border-gridlock-cyan pl-4 relative z-10">
+                        COMPETITIVE <span className="text-gridlock-cyan">ADVANTAGES</span>
+                    </h3>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                        <div className="space-y-2">
+                            <h4 className="text-white font-bold flex items-center gap-2">
+                                <span className="text-gridlock-cyan">01.</span> Data Hygiene Excellence
+                            </h4>
+                            <p className="text-sm text-gridlock-muted font-mono pl-6">
+                                Achieved a 92.3% global integrity score, surpassing standard cleaning benchmarks.
+                            </p>
+                        </div>
+
+                        <div className="space-y-2">
+                            <h4 className="text-white font-bold flex items-center gap-2">
+                                <span className="text-gridlock-cyan">02.</span> Advanced Spatial Recovery
+                            </h4>
+                            <p className="text-sm text-gridlock-muted font-mono pl-6">
+                                Utilized Regex pattern mining to recover 24,500 coordinates from unstructured text.
+                            </p>
+                        </div>
+
+                        <div className="space-y-2">
+                            <h4 className="text-white font-bold flex items-center gap-2">
+                                <span className="text-gridlock-cyan">03.</span> Actionable Insights
+                            </h4>
+                            <p className="text-sm text-gridlock-muted font-mono pl-6">
+                                Revealed hidden high-risk intersections on expressways that were previously invisible.
+                            </p>
+                        </div>
+
+                        <div className="space-y-2">
+                            <h4 className="text-white font-bold flex items-center gap-2">
+                                <span className="text-gridlock-cyan">04.</span> Professional Documentation
+                            </h4>
+                            <p className="text-sm text-gridlock-muted font-mono pl-6">
+                                Full audit trail, logic defense, and reproducible Python pipeline provided.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="mt-12 pt-8 border-t border-white/5 text-center">
+                        <p className="text-lg md:text-xl text-white font-mono italic opacity-90">
+                            "You didn't just clean data—you performed a forensic investigation revealing hidden dangers threatening NYC commuters."
+                        </p>
+                        <div className="text-xs text-gridlock-cyan mt-2 uppercase tracking-widest font-bold">
+                            - ANALYTICS SHOWDOWN JURY
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
